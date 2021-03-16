@@ -5,8 +5,9 @@ function hideCookieBanner() {
   document.getElementById('cookiebanner').style.display = 'none';
 }
 
-function showCookieConfirmation() {
+function showCookieConfirmation(confirmationMessage) {
   document.getElementById('nhsuk-cookie-confirmation-banner').hidden = false;
+  document.getElementById('govuk-cookie-banner__message').innerHTML = confirmationMessage;
 }
 
 function addFocusCookieConfirmation() {
@@ -26,10 +27,10 @@ function removeFocusCookieConfirmation() {
  * Call common methods on link click as well as consent type callback
  * @param {function} consentCallback callback to be called based on which link has been clicked.
  */
-function handleLinkClick(consentCallback) {
+function handleLinkClick(consentCallback, confirmationMessage) {
   hideCookieBanner();
   consentCallback();
-  showCookieConfirmation();
+  showCookieConfirmation(confirmationMessage);
   addFocusCookieConfirmation();
   removeFocusCookieConfirmation();
 }
@@ -51,12 +52,14 @@ export default function insertCookieBanner(onAccept, onAnalyticsAccept, hitLoggi
   document.getElementById('nhsuk-cookie-banner__link_accept').addEventListener('click', (e) => {
     e.preventDefault();
     hitLoggingUrl('declined');
-    handleLinkClick(onAccept);
+    const confirmationMessage = 'You have rejected additional cookies.';
+    handleLinkClick(onAccept, confirmationMessage);
   });
 
   document.getElementById('nhsuk-cookie-banner__link_accept_analytics').addEventListener('click', (e) => {
     e.preventDefault();
     hitLoggingUrl('accepted');
-    handleLinkClick(onAnalyticsAccept);
+    const confirmationMessage = 'You have accepted additional cookies.';
+    handleLinkClick(onAnalyticsAccept, confirmationMessage);
   });
 }

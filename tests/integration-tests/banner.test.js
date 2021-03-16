@@ -35,12 +35,14 @@ describe('Banner is usable', () => {
     await page.click('#nhsuk-cookie-banner__link_accept');
     await waitForHiddenBanner();
     await page.waitForSelector('#nhsuk-cookie-confirmation-banner', { visible: true });
+    await expect(page).toMatch('You have rejected additional cookies.');
   });
 
   it('clicking the "I\'m OK with analytics cookies" button should show confirmation banner', async () => {
     await page.click('#nhsuk-cookie-banner__link_accept_analytics');
     await waitForHiddenBanner();
     await page.waitForSelector('#nhsuk-cookie-confirmation-banner', { visible: true });
+    await expect(page).toMatch('You have accepted additional cookies.');
   });
 
   it('clicking "Do not use analytics cookies" should keep user on the same page', async () => {
