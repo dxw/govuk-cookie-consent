@@ -23,6 +23,13 @@ function removeFocusCookieConfirmation() {
   });
 }
 
+function hideCookieConfirmation() {
+  const cookieBannerCloseButton = document.getElementById('govuk-cookie-banner__close');
+  cookieBannerCloseButton.addEventListener('click', () => {
+    document.getElementById('nhsuk-cookie-confirmation-banner').hidden = true;
+  })
+}
+
 /**
  * Call common methods on link click as well as consent type callback
  * @param {function} consentCallback callback to be called based on which link has been clicked.
@@ -33,6 +40,7 @@ function handleLinkClick(consentCallback, confirmationMessage) {
   showCookieConfirmation(confirmationMessage);
   addFocusCookieConfirmation();
   removeFocusCookieConfirmation();
+  hideCookieConfirmation();
 }
 
 /**

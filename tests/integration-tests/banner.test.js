@@ -59,6 +59,21 @@ describe('Banner is usable', () => {
     await page.click('#nhsuk-cookie-banner__link');
     expect(page.url()).toEqual('http://localhost:8080/our-policies/cookies-policy/');
   });
+
+  it('clicking the "I\'m OK with analytics cookies" button should show confirmation banner and allow the banner to be closed', async () => {
+    await page.click('#nhsuk-cookie-banner__link_accept_analytics');
+    await waitForHiddenBanner();
+    await page.click('#govuk-cookie-banner__close');
+    await page.waitForSelector('.nhsuk-cookie-confirmation-banner', { hidden: true });
+  });
+
+  it('clicking "Do not use analytics cookies" button should show confirmation banner and allow the banner to be closed', async () => {
+    await page.click('#nhsuk-cookie-banner__link_accept_analytics');
+    await waitForHiddenBanner();
+    await page.click('#govuk-cookie-banner__close');
+    await page.waitForSelector('.nhsuk-cookie-confirmation-banner', { hidden: true });
+  });
+
 });
 
 describe('Remember cookie state', () => {
