@@ -1,14 +1,27 @@
 <div id="nhsuk-cookie-banner">
-  <div class="nhsuk-cookie-banner" id="cookiebanner">
-    <div class="nhsuk-width-container"> 
-        <h2>Cookies on the NHS website</h2> 
-        <p>We've put some small files called cookies on your device to make our site work.</p>
-        <p>We'd also like to use analytics cookies. These send information about how our site is used to services called Adobe Analytics, Hotjar and Google Analytics. We use this information to improve our site.</p>
-        <p>Let us know if this is OK. We'll use a cookie to save your choice. You can <a id="nhsuk-cookie-banner__link" href="${require('./settings.js').getPolicyUrl()}" tabindex="1">read more about our cookies</a> before you choose.</p>
-        <ul> 
-            <li><button class='nhsuk-button' id="nhsuk-cookie-banner__link_accept_analytics" href="#" tabindex="2">I'm OK with analytics cookies</button></li>
-            <li><button class='nhsuk-button' id="nhsuk-cookie-banner__link_accept" href="#" tabindex="3">Do not use analytics cookies</button></li>
-        </ul>
+  <div class="govuk-cookie-banner" id="cookiebanner" role="region" aria-label="Cookies on [name of service]">
+    <div class="govuk-cookie-banner__message govuk-width-container">
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on [name of service]</h2>
+
+          <div class="govuk-cookie-banner__content">
+            <p>We use some essential cookies to make this service work.</p>
+            <p>We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-button-group">
+        <button value="accept" type="button" name="cookies" class="govuk-button" data-module="govuk-button" id="nhsuk-cookie-banner__link_accept_analytics">
+          Accept analytics cookies
+        </button>
+        <button value="reject" type="button" name="cookies" class="govuk-button" data-module="govuk-button" id="nhsuk-cookie-banner__link_accept">
+          Reject analytics cookies
+        </button>
+        <a class="govuk-link" id="nhsuk-cookie-banner__link" href="${require('./settings.js').getPolicyUrl()}">View cookies</a>
+      </div>
     </div>
   </div>
 

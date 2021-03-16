@@ -3,11 +3,11 @@
 import { clearAllCookies } from './util';
 
 const waitForVisibleBanner = async () => {
-  await page.waitForSelector('.nhsuk-cookie-banner', { visible: true });
+  await page.waitForSelector('.govuk-cookie-banner', { visible: true });
 };
 
 const waitForHiddenBanner = async () => {
-  await page.waitForSelector('.nhsuk-cookie-banner', { hidden: true });
+  await page.waitForSelector('.govuk-cookie-banner', { hidden: true });
 };
 
 describe('Banner is usable', () => {
@@ -18,7 +18,7 @@ describe('Banner is usable', () => {
   });
 
   it('should display on first page load', async () => {
-    await expect(page).toMatch("We've put some small files called cookies on your device");
+    await expect(page).toMatch('We use some essential cookies to make this service work.');
   });
 
   it('clicking the "Do not use analytics cookies" button should hide banner', async () => {
@@ -111,7 +111,7 @@ describe('custom banner url link', () => {
     await page.goto('http://localhost:8080/tests/example/custom-link.html');
     await waitForVisibleBanner();
     await page.click('#nhsuk-cookie-banner__link');
-    const banner = await page.evaluate(async () => document.querySelector('.nhsuk-cookie-banner'));
+    const banner = await page.evaluate(async () => document.querySelector('.govuk-cookie-banner'));
     expect(banner).toBe(null);
   });
 
@@ -122,7 +122,7 @@ describe('custom banner url link', () => {
     await page.click('#nhsuk-cookie-banner__link');
     // Go back after clicking the policy page link
     await page.goto('http://localhost:8080/tests/example/custom-link.html');
-    const banner = await page.evaluate(async () => document.querySelector('.nhsuk-cookie-banner'));
+    const banner = await page.evaluate(async () => document.querySelector('.govuk-cookie-banner'));
     expect(banner).not.toBe(null);
   });
 });

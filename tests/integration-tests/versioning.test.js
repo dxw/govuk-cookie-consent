@@ -48,7 +48,7 @@ describe('User has out-of-date consent', () => {
   });
 
   it('shows the banner', async () => {
-    const banner = await page.evaluate(async () => document.querySelector('.nhsuk-cookie-banner'));
+    const banner = await page.evaluate(async () => document.querySelector('.govuk-cookie-banner'));
     expect(banner).not.toBe(null);
   });
 
