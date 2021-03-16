@@ -64,14 +64,14 @@ describe('Banner is usable', () => {
     await page.click('#govuk-cookie-banner__link_accept_analytics');
     await waitForHiddenBanner();
     await page.click('#govuk-cookie-banner__close');
-    await page.waitForSelector('.govuk-cookie-confirmation-banner', { hidden: true });
+    await page.waitForSelector('.govuk-cookie-banner', { hidden: true });
   });
 
   it('clicking "Do not use analytics cookies" button should show confirmation banner and allow the banner to be closed', async () => {
     await page.click('#govuk-cookie-banner__link_accept_analytics');
     await waitForHiddenBanner();
     await page.click('#govuk-cookie-banner__close');
-    await page.waitForSelector('.govuk-cookie-confirmation-banner', { hidden: true });
+    await page.waitForSelector('.govuk-cookie-banner', { hidden: true });
   });
 });
 

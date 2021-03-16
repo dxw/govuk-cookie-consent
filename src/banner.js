@@ -25,7 +25,7 @@ function removeFocusCookieConfirmation() {
 function hideCookieConfirmation() {
   const cookieBannerCloseButton = document.getElementById('govuk-cookie-banner__close');
   cookieBannerCloseButton.addEventListener('click', () => {
-    document.getElementById('govuk-cookie-confirmation-banner').hidden = true;
+    document.getElementById('govuk-cookie-banner').hidden = true;
   });
 }
 
