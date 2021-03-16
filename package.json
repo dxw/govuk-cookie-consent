@@ -1,7 +1,7 @@
 {
-  "name": "cookie-consent",
-  "version": "0.5.2",
-  "description": "In-house solution for managing cookies on nhs.uk",
+  "name": "govuk-cookie-consent",
+  "version": "0.0.1",
+  "description": "Solution for managing cookies on GOV.UK services",
   "main": "src/cookieconsent.js",
   "directories": {
     "test": "tests"
@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nhsuk/cookie-consent.git"
+    "url": "git+https://github.com/dxw/govuk-cookie-consent.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nhsuk/cookie-consent/issues"
+    "url": "https://github.com/dxw/govuk-cookie-consent/issues"
   },
-  "homepage": "https://github.com/nhsuk/cookie-consent#readme",
+  "homepage": "https://github.com/dxw/govuk-cookie-consent#readme",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",

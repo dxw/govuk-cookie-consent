@@ -1,5 +1,5 @@
 # cookie-consent
-In-house solution for managing cookies on nhs.uk
+A solution for managing cookies on GOV.UK services. Based on [NHS Cookie Consent](https://github.com/nhsuk/cookie-consent).
 
 ## Quickstart
 
