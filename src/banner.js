@@ -1,5 +1,4 @@
 import bannerHtml from './banner.html';
-import bannerCss from './style.scss';
 
 function hideCookieBanner() {
   document.getElementById('cookiebanner').style.display = 'none';
@@ -53,7 +52,6 @@ export default function insertCookieBanner(onAccept, onAnalyticsAccept, hitLoggi
   // add a css block to the inserted html
   const div = document.createElement('div');
   div.innerHTML = bannerHtml;
-  div.innerHTML += `<style>${bannerCss.toString()}</style>`;
   document.body.insertBefore(div, document.body.firstChild);
   hitLoggingUrl('seen');
 
