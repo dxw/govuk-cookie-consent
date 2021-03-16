@@ -6,7 +6,7 @@ function hideCookieBanner() {
 }
 
 function showCookieConfirmation() {
-  document.getElementById('nhsuk-cookie-confirmation-banner').style.display = 'block';
+  document.getElementById('nhsuk-cookie-confirmation-banner').hidden = false;
 }
 
 function addFocusCookieConfirmation() {

@@ -25,9 +25,21 @@
     </div>
   </div>
 
-  <div class="nhsuk-success-banner" id="nhsuk-cookie-confirmation-banner" style="display:none;">
-    <div class="nhsuk-width-container">
-      <p id="nhsuk-success-banner__message">You can change your cookie settings at any time using our <a href="${require('./settings.js').getPolicyUrl()}">cookies page</a>.</p>
+  <div class="govuk-cookie-banner__message govuk-width-container" id="nhsuk-cookie-confirmation-banner" role="alert" hidden>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-cookie-banner__content" id="nhsuk-success-banner__message">
+          <p>You’ve accepted analytics cookies. You can <a href="#">change your cookie settings</a> at any time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-button-group">
+      <button class="govuk-button" data-module="govuk-button">
+        Hide this message
+      </button>
     </div>
   </div>
 </div>
