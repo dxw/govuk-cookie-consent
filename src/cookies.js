@@ -69,13 +69,13 @@ export function getCookie(name) {
 }
 
 /*
- * Remove all cookies other than nhsuk-cookie-consent cookie
+ * Remove all cookies other than govuk-cookie-consent cookie
  */
 export function deleteCookies() {
   const cookies = getAllCookies();
   const cookieNames = Object.keys(cookies);
   // We want to delete all cookies except for our consent cookie
-  const cookieNamesToDelete = cookieNames.filter(name => name !== 'nhsuk-cookie-consent');
+  const cookieNamesToDelete = cookieNames.filter(name => name !== 'govuk-cookie-consent');
 
   // generate a list of domains that the cookie could possibly belong to
   const domainParts = window.location.hostname.split('.');

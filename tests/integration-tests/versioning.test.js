@@ -24,7 +24,7 @@ const setFullConsentWithVersion = async (version) => {
   /* eslint-enable */
   const cookieValueString = encodeURIComponent(JSON.stringify(cookieValue));
   await page.setCookie({
-    name: 'nhsuk-cookie-consent',
+    name: 'govuk-cookie-consent',
     path: '/',
     value: cookieValueString,
   });
@@ -72,7 +72,7 @@ describe('User has in-date consent', () => {
   });
 
   it('doesn\'t show the banner', async () => {
-    const banner = await page.evaluate(async () => document.querySelector('.nhsuk-cookie-banner'));
+    const banner = await page.evaluate(async () => document.querySelector('.govuk-cookie-banner'));
     expect(banner).toBe(null);
   });
 

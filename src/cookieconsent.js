@@ -9,7 +9,7 @@ import { getNoBanner, getPolicyUrl, makeUrlAbsolute } from './settings';
  * to consent to the new rules
  */
 export const COOKIE_VERSION = 3;
-const COOKIE_NAME = 'nhsuk-cookie-consent';
+const COOKIE_NAME = 'govuk-cookie-consent';
 
 /**
  * enum for different types of cookie.

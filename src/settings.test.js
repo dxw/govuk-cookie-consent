@@ -1,7 +1,9 @@
 /* global expect, jest, afterEach */
 /* eslint-disable no-underscore-dangle */
 
-import settings, { getNoBanner, getPolicyUrl, makeUrlAbsolute, getServiceName } from './settings';
+import settings, {
+  getNoBanner, getPolicyUrl, makeUrlAbsolute, getServiceName,
+} from './settings';
 
 describe('get script settings for no banner', () => {
   afterEach(() => {

@@ -24,7 +24,7 @@ describe('Cookies set on first load', () => {
 
   it('one cookie should be the consent preference', async () => {
     const cookieNames = await getCookieNames();
-    expect(cookieNames).toContainEqual('nhsuk-cookie-consent');
+    expect(cookieNames).toContainEqual('govuk-cookie-consent');
   });
 });
 
@@ -52,7 +52,7 @@ describe('Cookies are set after accepting statistics', () => {
     await clearAllCookies();
     await page.goto('http://localhost:8080/tests/example/');
     await waitForVisibleModal();
-    await page.click('#nhsuk-cookie-banner__link_accept');
+    await page.click('#govuk-cookie-banner__link_accept');
     await waitForHiddenModal();
     await acceptStatistics();
   });

@@ -5,18 +5,18 @@ function hideCookieBanner() {
 }
 
 function showCookieConfirmation(confirmationMessage) {
-  document.getElementById('nhsuk-cookie-confirmation-banner').hidden = false;
+  document.getElementById('govuk-cookie-confirmation-banner').hidden = false;
   document.getElementById('govuk-cookie-banner__message').innerHTML = confirmationMessage;
 }
 
 function addFocusCookieConfirmation() {
-  const cookieConfirmationMessage = document.getElementById('nhsuk-success-banner__message');
+  const cookieConfirmationMessage = document.getElementById('govuk-success-banner__message');
   cookieConfirmationMessage.setAttribute('tabIndex', '-1');
   cookieConfirmationMessage.focus();
 }
 
 function removeFocusCookieConfirmation() {
-  const cookieConfirmationMessage = document.getElementById('nhsuk-success-banner__message');
+  const cookieConfirmationMessage = document.getElementById('govuk-success-banner__message');
   cookieConfirmationMessage.addEventListener('blur', () => {
     cookieConfirmationMessage.removeAttribute('tabIndex');
   });
@@ -25,8 +25,8 @@ function removeFocusCookieConfirmation() {
 function hideCookieConfirmation() {
   const cookieBannerCloseButton = document.getElementById('govuk-cookie-banner__close');
   cookieBannerCloseButton.addEventListener('click', () => {
-    document.getElementById('nhsuk-cookie-confirmation-banner').hidden = true;
-  })
+    document.getElementById('govuk-cookie-confirmation-banner').hidden = true;
+  });
 }
 
 /**
@@ -55,14 +55,14 @@ export default function insertCookieBanner(onAccept, onAnalyticsAccept, hitLoggi
   document.body.insertBefore(div, document.body.firstChild);
   hitLoggingUrl('seen');
 
-  document.getElementById('nhsuk-cookie-banner__link_accept').addEventListener('click', (e) => {
+  document.getElementById('govuk-cookie-banner__link_accept').addEventListener('click', (e) => {
     e.preventDefault();
     hitLoggingUrl('declined');
     const confirmationMessage = 'You have rejected additional cookies.';
     handleLinkClick(onAccept, confirmationMessage);
   });
 
-  document.getElementById('nhsuk-cookie-banner__link_accept_analytics').addEventListener('click', (e) => {
+  document.getElementById('govuk-cookie-banner__link_accept_analytics').addEventListener('click', (e) => {
     e.preventDefault();
     hitLoggingUrl('accepted');
     const confirmationMessage = 'You have accepted additional cookies.';

@@ -75,12 +75,12 @@ describe('deleteCookies', () => {
     expect(deleteCookies).toBeInstanceOf(Function);
   });
 
-  test('deletes all cookies except nhsuk-cookie-consent', () => {
-    document.cookie = 'nhsuk-cookie-consent=consentvalue';
+  test('deletes all cookies except govuk-cookie-consent', () => {
+    document.cookie = 'govuk-cookie-consent=consentvalue';
     document.cookie = 'testcookie=testvalue';
     document.cookie = 'anothertestcookie=anothertestvalue';
     deleteCookies();
-    expect(document.cookie).toBe('nhsuk-cookie-consent=consentvalue');
+    expect(document.cookie).toBe('govuk-cookie-consent=consentvalue');
   });
 
   test('deletes cookies, even if they have a path', () => {
