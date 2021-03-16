@@ -48,6 +48,6 @@ test('setMarketing sets the marketing consent', () => {
   expect(api.getMarketing()).toBe(false);
 });
 
-test('Javascript API is exposed on window.NHSCookieConsent', () => {
-  expect(window.NHSCookieConsent).toBeInstanceOf(Object);
+test('Javascript API is exposed on window.GovUkCookieConsent', () => {
+  expect(window.GovUkCookieConsent).toBeInstanceOf(Object);
 });

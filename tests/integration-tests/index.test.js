@@ -39,11 +39,11 @@ describe('Cookies are set after accepting statistics', () => {
 
   const acceptStatistics = async () => {
     /**
-      * Use the NHSCookieConsent API to set statistics to true,
+      * Use the GovUkCookieConsent API to set statistics to true,
       * then reload to make the preference change take effect.
       */
     await page.evaluate(() => {
-      window.NHSCookieConsent.setStatistics(true);
+      window.GovUkCookieConsent.setStatistics(true);
     });
     await page.reload({ waitUntil: ['networkidle0'] });
   };

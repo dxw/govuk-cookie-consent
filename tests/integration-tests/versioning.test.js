@@ -53,7 +53,7 @@ describe('User has out-of-date consent', () => {
   });
 
   it('doesn\'t respect previous cookie settings', async () => {
-    const statistics = await page.evaluate(async () => window.NHSCookieConsent.getStatistics());
+    const statistics = await page.evaluate(async () => window.GovUkCookieConsent.getStatistics());
     expect(statistics).toBe(false);
   });
 
@@ -77,7 +77,7 @@ describe('User has in-date consent', () => {
   });
 
   it('respects previous cookie settings', async () => {
-    const statistics = await page.evaluate(async () => window.NHSCookieConsent.getStatistics());
+    const statistics = await page.evaluate(async () => window.GovUkCookieConsent.getStatistics());
     expect(statistics).toBe(true);
   });
 

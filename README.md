@@ -66,11 +66,11 @@ which can manage cookies.
 
 ## Javascript API
 
-The javascript API is exposed on a NHSCookieConsent global variable.
+The javascript API is exposed on a GovUkCookieConsent global variable.
 
 ```js
 // shows the current cookie consent library version
-console.log(NHSCookieConsent.VERSION)
+console.log(GovUkCookieConsent.VERSION)
 ```
 
 ### Methods

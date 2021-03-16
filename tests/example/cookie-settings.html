@@ -38,16 +38,16 @@
           var statistics = document.getElementById("statistics");
           var marketing = document.getElementById("marketing");
 
-          preferences.checked = NHSCookieConsent.getPreferences();
-          statistics.checked = NHSCookieConsent.getStatistics();
-          marketing.checked = NHSCookieConsent.getMarketing();
+          preferences.checked = GovUkCookieConsent.getPreferences();
+          statistics.checked = GovUkCookieConsent.getStatistics();
+          marketing.checked = GovUkCookieConsent.getMarketing();
 
           function updateSettings() {
-            NHSCookieConsent.setPreferences(preferences.checked);
-            NHSCookieConsent.setStatistics(statistics.checked);
-            NHSCookieConsent.setMarketing(marketing.checked);
+            GovUkCookieConsent.setPreferences(preferences.checked);
+            GovUkCookieConsent.setStatistics(statistics.checked);
+            GovUkCookieConsent.setMarketing(marketing.checked);
             // If the user has hit save, then they have consented.
-            NHSCookieConsent.setConsented(true);
+            GovUkCookieConsent.setConsented(true);
             // reload
             location = location;
           }
