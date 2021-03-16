@@ -1,7 +1,7 @@
 import bannerHtml from './banner.html';
 
-function hideCookieBanner() {
-  document.getElementById('cookiebanner').style.display = 'none';
+function hideCookieChoiceBanner() {
+  document.getElementById('govuk-cookie-choice-banner').hidden = true;
 }
 
 function showCookieConfirmation(confirmationMessage) {
@@ -34,7 +34,7 @@ function hideCookieConfirmation() {
  * @param {function} consentCallback callback to be called based on which link has been clicked.
  */
 function handleLinkClick(consentCallback, confirmationMessage) {
-  hideCookieBanner();
+  hideCookieChoiceBanner();
   consentCallback();
   showCookieConfirmation(confirmationMessage);
   addFocusCookieConfirmation();

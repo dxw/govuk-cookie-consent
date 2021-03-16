@@ -30,11 +30,11 @@ describe('Cookies set on first load', () => {
 
 describe('Cookies are set after accepting statistics', () => {
   const waitForVisibleModal = async () => {
-    await page.waitForSelector('.govuk-cookie-banner', { visible: true });
+    await page.waitForSelector('#govuk-cookie-choice-banner', { visible: true });
   };
 
   const waitForHiddenModal = async () => {
-    await page.waitForSelector('.govuk-cookie-banner', { hidden: true });
+    await page.waitForSelector('#govuk-cookie-confirmation-banner', { visible: true });
   };
 
   const acceptStatistics = async () => {

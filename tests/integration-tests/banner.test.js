@@ -3,11 +3,11 @@
 import { clearAllCookies } from './util';
 
 const waitForVisibleBanner = async () => {
-  await page.waitForSelector('.govuk-cookie-banner', { visible: true });
+  await page.waitForSelector('#govuk-cookie-choice-banner', { visible: true });
 };
 
 const waitForHiddenBanner = async () => {
-  await page.waitForSelector('.govuk-cookie-banner', { hidden: true });
+  await page.waitForSelector('#govuk-cookie-confirmation-banner', { visible: true });
 };
 
 describe('Banner is usable', () => {
