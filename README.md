@@ -29,6 +29,16 @@ Possible data-cookieconsent values are `preferences`, `statistics` and `marketin
 
 ### Script Options
 
+#### `data-service-name`
+
+By default, the banner shows the service name as `GOV.UK`.
+To set this to your service, add a `data-service-name` attribute to the
+script tag:
+
+```html
+<script src="./cookie-consent.js" data-service-name="Check the MOT Status of a vehicle" type="text/javascript"></script>
+```
+
 #### `data-no-banner`
 
 If you want to prevent the cookie banner from showing automatically, add a
@@ -67,9 +77,9 @@ console.log(NHSCookieConsent.VERSION)
 
 - `getPreferences()`
 - `getStatistics()`
-- `getMarketing()` 
+- `getMarketing()`
 
-These methods get the status of the cookie consent for that type of cookie.  
+These methods get the status of the cookie consent for that type of cookie.
 Returns a boolean.
 
 - `getConsented()`
@@ -81,8 +91,8 @@ It is primarily used to hide the banner once consent has been given.
 - `setStatistics(value)`
 - `setMarketing(value)`
 
-These methods set the status of the cookie consent for that type of cookie.  
-set methods should only be used in response to a user interaction accepting that type of cookie.  
+These methods set the status of the cookie consent for that type of cookie.
+set methods should only be used in response to a user interaction accepting that type of cookie.
 Expects a boolean `value` argument.
 
 - `setConsented(value)`
@@ -115,6 +125,15 @@ Compiled javascript will be saved to dist/main.js
 ### Environment variables
 
 Environment variables can be used at compile-time to change the cookie script behaviour.
+
+#### `SERVICE_NAME`
+
+By default, the banner shows the service name as `GOV.UK`.
+To set this to your service, you can set this variable
+
+```sh
+SERVICE_NAME="Check the MOT status of a vehicle" npm run build:production
+```
 
 #### `NO_BANNER`
 

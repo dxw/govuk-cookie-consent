@@ -47,3 +47,21 @@ export function getNoBanner() {
 
   return defaults;
 }
+
+// get properties from the scriptTag for serviceName
+export function getServiceName() {
+  let serviceName = 'GOV.UK';
+  if (process.env.SERVICE_NAME) {
+    serviceName = process.env.SERVICE_NAME;
+  }
+
+  if (!scriptTag) {
+    return serviceName;
+  }
+
+  if (scriptTag.getAttribute('data-service-name')) {
+    serviceName = scriptTag.getAttribute('data-service-name');
+  }
+
+  return serviceName;
+}

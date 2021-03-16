@@ -1,7 +1,7 @@
 /* global expect, jest, afterEach */
 /* eslint-disable no-underscore-dangle */
 
-import settings, { getNoBanner, getPolicyUrl, makeUrlAbsolute } from './settings';
+import settings, { getNoBanner, getPolicyUrl, makeUrlAbsolute, getServiceName } from './settings';
 
 describe('get script settings for no banner', () => {
   afterEach(() => {
@@ -104,6 +104,53 @@ describe('get an absolute URL', () => {
   test('when the URL has a hash fragment', () => {
     const url = '/path/to/page.html#section-2';
     expect(makeUrlAbsolute(url)).toBe('http://localhost/path/to/page.html#section-2');
+  });
+});
+
+describe('testing getServiceName with environment variables and custom tags', () => {
+  // need to set up a temporary environment variable
+  const OLD_ENV = process.env;
+
+  afterEach(() => {
+    settings.__ResetDependency__('scriptTag');
+  });
+
+  test('getServiceName returns environment variable when one is set', () => {
+    // Resets the module registry - the cache of all required modules.
+    // This is useful to isolate modules where local state might conflict between tests.
+    const scriptTag = document.createElement('script');
+    settings.__Rewire__('serviceName', scriptTag);
+    jest.resetModules();
+    process.env = { ...OLD_ENV };
+    process.env.SERVICE_NAME = 'Teachers: claim back your student loan repayments';
+    expect(getServiceName()).toEqual('Teachers: claim back your student loan repayments');
+    process.env = OLD_ENV;
+  });
+
+  test('getServiceName returns custom tag when one is set', () => {
+    const scriptTag = document.createElement('script');
+    settings.__Rewire__('scriptTag', scriptTag);
+    scriptTag.setAttribute('data-service-name', 'Teachers: claim back your student loan repayments');
+    expect(getServiceName()).toEqual('Teachers: claim back your student loan repayments');
+  });
+
+  test('getServiceName returns default value when no env var or custom tag', () => {
+    const scriptTag = document.createElement('script');
+    settings.__Rewire__('scriptTag', scriptTag);
+    expect(getServiceName()).toEqual('GOV.UK');
+    settings.__ResetDependency__('dataPolicyScript');
+  });
+
+  test('getServiceName returns custom tag when both tag and env var are set', () => {
+    const scriptTag = document.createElement('script');
+    settings.__Rewire__('scriptTag', scriptTag);
+    jest.resetModules();
+    process.env = { ...OLD_ENV };
+    process.env.SERVICE_NAME = 'Teachers: claim back your student loan repayments';
+    scriptTag.setAttribute('data-service-name', 'data-test');
+    settings.__Rewire__('scriptTag', scriptTag);
+    expect(getServiceName()).toEqual('data-test');
+    process.env = OLD_ENV;
   });
 });
 
