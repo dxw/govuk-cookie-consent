@@ -1,4 +1,4 @@
-import bannerHtml from './banner.html';
+import bannerHtml from './html/banner.html';
 
 function hideCookieChoiceBanner() {
   document.getElementById('govuk-cookie-choice-banner').hidden = true;
