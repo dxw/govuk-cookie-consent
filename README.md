@@ -1,4 +1,5 @@
 # cookie-consent
+
 A solution for managing cookies on GOV.UK services. Based on [NHS Cookie Consent](https://github.com/nhsuk/cookie-consent).
 
 ## Quickstart
@@ -13,6 +14,7 @@ Go to http://localhost:8080/tests/example/ for an example site using the cookie 
 ## Usage
 
 Include the cookie javascript in your page
+
 ```html
 <script src="/path/to/javascript.js" type="text/javascript"></script>
 ```
@@ -24,7 +26,42 @@ which scripts to enable based on the user's consent settings.
 Possible data-cookieconsent values are `preferences`, `statistics` and `marketing`.
 
 ```html
-<script src="/path/to/js-that-uses-cookies.js" data-cookieconsent="marketing" type="text/plain"></script>
+<script
+  src="/path/to/js-that-uses-cookies.js"
+  data-cookieconsent="marketing"
+  type="text/plain"
+></script>
+```
+
+### Cookie Settings page
+
+There is also an optional form for you to add to your [cookies page](https://design-system.service.gov.uk/patterns/cookies-page/).
+
+To use this, add the following markup to your Cookies Page:
+
+```html
+<h2 class="govuk-heading-l">Change your cookie settings</h2>
+<div
+  id="govuk-cookie-preferences"
+  data-analytics
+  data-marketing
+  data-preferences
+>
+  <p class="govuk-body">
+    We cannot change your cookie settings at the moment because JavaScript is
+    not running in your browser. To fix this, try:
+  </p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>turning on JavaScript in your browser settings</li>
+    <li>reloading this page</li>
+  </ul>
+</div>
+```
+
+You can alter the `data-analytics`, `data-marketing` or `data-preferences` data attributes, depending on what options you need to display. For example, the following only show options for analytics cookies:
+
+```html
+<div id="govuk-cookie-preferences" data-analytics>...</div>
 ```
 
 ### Script Options
@@ -36,7 +73,11 @@ To set this to your service, add a `data-service-name` attribute to the
 script tag:
 
 ```html
-<script src="./cookie-consent.js" data-service-name="Check the MOT Status of a vehicle" type="text/javascript"></script>
+<script
+  src="./cookie-consent.js"
+  data-service-name="Check the MOT Status of a vehicle"
+  type="text/javascript"
+></script>
 ```
 
 #### `data-no-banner`
@@ -57,7 +98,11 @@ By default, the cookie policy link takes users to `/our-policies/cookies-policy/
 If you need the link to use a different url, you can set the `data-policy-url` attribute.
 
 ```html
-<script src="./cookie-consent.js" data-policy-url="/custom/policy/url" type="text/javascript"></script>
+<script
+  src="./cookie-consent.js"
+  data-policy-url="/custom/policy/url"
+  type="text/javascript"
+></script>
 ```
 
 The cookie banner will not show on the policy page, even if you have embedded the cookie-consent.js script.
@@ -70,7 +115,7 @@ The javascript API is exposed on a GovUkCookieConsent global variable.
 
 ```js
 // shows the current cookie consent library version
-console.log(GovUkCookieConsent.VERSION)
+console.log(GovUkCookieConsent.VERSION);
 ```
 
 ### Methods
@@ -111,11 +156,13 @@ expiry date of the cookie.
 This project uses [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io/)
 
 To compile the javascript in development mode, run
+
 ```sh
 npm run build
 ```
 
 For production mode, run
+
 ```sh
 npm run build:production
 ```
@@ -156,6 +203,7 @@ POLICY_URL=/custom/policy/url/ npm run build:production
 #### `LOG TO SPLUNK`
 
 Set to `true` a logging URL will be hit when the banner shown, analytics are accepted or analytics are not accepted.
+
 ```sh
 LOG_TO_SPLUNK=true npm run build:production
 ```
@@ -169,11 +217,13 @@ npm test
 ```
 
 To run only unit tests
+
 ```sh
 npm run test:unit
 ```
 
 To run only integration tests
+
 ```sh
 npm run test:integration
 ```
@@ -195,5 +245,6 @@ The release also must contain changes to the package version number to match the
 If the release contains a change that will require the banner to be redisplayed to users, then the `COOKIE_VERSION` variable in cookieconsent.js must be increased by 1.
 
 ## Notes
+
 Currently, in-house development for this solution is primarily done on UNIX systems.
 There may be some difficulties when developing this solution on a windows machine.
