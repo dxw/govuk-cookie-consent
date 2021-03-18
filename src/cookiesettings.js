@@ -1,6 +1,6 @@
 import settingsHtml from './html/settings.html';
 
-import analyticsSettings from './html/_analytics_settings.html';
+import statisticsSettings from './html/_statistics_settings.html';
 import marketingSettings from './html/_marketing_settings.html';
 import preferencesSettings from './html/_preferences_settings.html';
 
@@ -28,7 +28,7 @@ function applyDefault(key, form, consentSettings) {
 function applyDefaults(consentSettings) {
   const form = document['govuk-cookie-page_form'];
 
-  applyDefault('analytics', form, consentSettings);
+  applyDefault('statistics', form, consentSettings);
   applyDefault('marketing', form, consentSettings);
   applyDefault('preferences', form, consentSettings);
 }
@@ -42,13 +42,11 @@ function applyDefaults(consentSettings) {
 export default function insertCookieSettings(element, consentSettings) {
   const wrapper = element;
   const doc = document.implementation.createHTMLDocument('');
-  const settingsDiv = doc.createElement('div');
 
   doc.body.innerHTML = settingsHtml;
-  settingsDiv.innerHTML = analyticsSettings;
 
-  if (element.dataset.analytics !== undefined) {
-    appendSettings(doc, analyticsSettings);
+  if (element.dataset.statistics !== undefined) {
+    appendSettings(doc, statisticsSettings);
   }
 
   if (element.dataset.marketing !== undefined) {

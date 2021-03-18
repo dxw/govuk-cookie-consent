@@ -24,7 +24,7 @@ describe('Settings form is usable', () => {
   });
 
   it('should allow all settings to be set', async () => {
-    await page.click('#analytics-cookies');
+    await page.click('#statistics-cookies');
     await page.click('#marketing-cookies');
     await page.click('#preferences-cookies');
 
@@ -36,7 +36,7 @@ describe('Settings form is usable', () => {
 
     await expect(consentSettings.consented).toEqual(true);
 
-    await expect(consentSettings.analytics).toEqual(true);
+    await expect(consentSettings.statistics).toEqual(true);
     await expect(consentSettings.marketing).toEqual(true);
     await expect(consentSettings.preferences).toEqual(true);
   });
@@ -50,18 +50,22 @@ describe('setting and resetting values', () => {
     await loadPage();
   });
 
-  it('should allow analytics settings to be set', async () => {
-    await page.click('#analytics-cookies');
+  it('should allow statistics settings to be set', async () => {
+    await page.click('#statistics-cookies');
     await page.click('#govuk-cookie-page_save');
 
     await loadPage();
 
-    await page.click('#analytics-cookies-2');
+    // For some reason, not waiting causes the incorrect
+    // element to be clicked
+    await page.waitFor(1000);
+
+    await page.click('#statistics-cookies-2');
     await page.click('#govuk-cookie-page_save');
 
     consentSettings = await getConsentSettings();
 
-    await expect(consentSettings.analytics).toEqual(false);
+    await expect(consentSettings.statistics).toEqual(false);
   });
 
   it('should allow marketing settings to be set', async () => {
@@ -100,24 +104,24 @@ describe('default values', () => {
   });
 
   it('should set all radio buttons to "No" by default', async () => {
-    const analyticsValue = await page.evaluate(async () => document.querySelector('#analytics-cookies-2').checked);
+    const statisticsValue = await page.evaluate(async () => document.querySelector('#statistics-cookies-2').checked);
     const marketingValue = await page.evaluate(async () => document.querySelector('#marketing-cookies-2').checked);
     const preferencesValue = await page.evaluate(async () => document.querySelector('#preferences-cookies-2').checked);
 
-    expect(analyticsValue).toBe(true);
+    expect(statisticsValue).toBe(true);
     expect(marketingValue).toBe(true);
     expect(preferencesValue).toBe(true);
   });
 
-  it('should set the analytics options once they have been set', async () => {
-    await page.click('#analytics-cookies');
+  it('should set the statistics options once they have been set', async () => {
+    await page.click('#statistics-cookies');
     await page.click('#govuk-cookie-page_save');
 
     await loadPage();
 
-    const analyticsValue = await page.evaluate(async () => document.querySelector('#analytics-cookies').checked);
+    const statisticsValue = await page.evaluate(async () => document.querySelector('#statistics-cookies').checked);
 
-    expect(analyticsValue).toBe(true);
+    expect(statisticsValue).toBe(true);
   });
 
   it('should set the marketing options once they have been set', async () => {
