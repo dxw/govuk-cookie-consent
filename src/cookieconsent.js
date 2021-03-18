@@ -1,5 +1,7 @@
 import { getCookie as getRawCookie, createCookie as createRawCookie, deleteCookies } from './cookies';
+import insertCookieSettings from './cookiesettings';
 import insertCookieBanner from './banner';
+import notificationHTML from './html/notification.html';
 import { enableScriptsByCategories, enableIframesByCategories } from './enable';
 import { getNoBanner, getPolicyUrl, makeUrlAbsolute } from './settings';
 
@@ -217,6 +219,23 @@ function shouldShowBanner() {
   return false;
 }
 
+function setCookieSetting(type, form) {
+  const element = form.elements[`${type}-cookies`];
+
+  // If the element exists and is set to yes, set the setting to true
+  if (element !== undefined) {
+    setConsentSetting(type, element.value === 'yes');
+  }
+}
+
+// Set cookie settings from the preference form
+function setCookieSettings(form) {
+  setCookieSetting('analytics', form);
+  setCookieSetting('marketing', form);
+  setCookieSetting('preferences', form);
+  setConsentSetting('consented', true);
+}
+
 /*
  * function that needs to fire when every page loads.
  * - shows the cookie banner
@@ -248,6 +267,20 @@ export function onload() {
   // If there isn't a valid user cookie, create one with default consent
   if (isValidVersion() !== true) {
     setConsent(defaultConsent, COOKIE_TYPE.SESSION);
+  }
+
+  // Check if we need to inject the preferences form on this page
+  const preferenceWrapper = document.getElementById('govuk-cookie-preferences');
+
+  if (preferenceWrapper !== null) {
+    const consentSettings = getConsent();
+    const cookieForm = insertCookieSettings(preferenceWrapper, consentSettings);
+
+    cookieForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      setCookieSettings(e.target);
+      preferenceWrapper.innerHTML = notificationHTML;
+    });
   }
 
   enableScriptsAndIframes();

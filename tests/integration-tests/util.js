@@ -8,3 +8,10 @@ export async function clearAllCookies() {
   await page.goto('http://localhost:8080');
   await page._client.send('Network.clearBrowserCookies'); // eslint-disable-line no-underscore-dangle
 }
+
+export async function getConsentSettings() {
+  const allCookies = await page._client.send('Network.getAllCookies'); // eslint-disable-line no-underscore-dangle
+  const rawconsentSettings = allCookies.cookies.find(obj => obj.name === 'govuk-cookie-consent');
+
+  return JSON.parse(decodeURIComponent(rawconsentSettings.value));
+}
