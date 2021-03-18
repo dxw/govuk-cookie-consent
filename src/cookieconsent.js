@@ -219,21 +219,24 @@ function shouldShowBanner() {
   return false;
 }
 
-function setCookieSetting(type, form) {
-  const element = form.elements[`${type}-cookies`];
-
-  // If the element exists and is set to yes, set the setting to true
-  if (element !== undefined) {
-    setConsentSetting(type, element.value === 'yes');
-  }
-}
-
 // Set cookie settings from the preference form
 function setCookieSettings(form) {
-  setCookieSetting('analytics', form);
-  setCookieSetting('marketing', form);
-  setCookieSetting('preferences', form);
-  setConsentSetting('consented', true);
+  let element;
+
+  const settings = ['statistics', 'marketing', 'preferences'];
+  const consent = {
+    consented: true,
+  };
+
+  settings.forEach((setting) => {
+    element = form.elements[`${setting}-cookies`];
+
+    if (element !== undefined) {
+      consent[setting] = element.value === 'yes';
+    }
+  });
+
+  setConsent(consent);
 }
 
 /*
