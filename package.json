@@ -55,6 +55,7 @@
     "regenerator-runtime": "^0.13.2",
     "sass-loader": "^7.1.0",
     "start-server-and-test": "^1.7.12",
+    "tar": "^6.1.9",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
