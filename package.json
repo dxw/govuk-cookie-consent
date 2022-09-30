@@ -55,7 +55,7 @@
     "puppeteer": "^1.14.0",
     "regenerator-runtime": "^0.13.2",
     "sass-loader": "^7.1.0",
-    "start-server-and-test": "^1.7.12",
+    "start-server-and-test": "1.14.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
