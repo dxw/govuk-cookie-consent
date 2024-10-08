@@ -1,6 +1,6 @@
 /* global page expect */
 
-import { clearAllCookies, getConsentSettings } from './util';
+const { clearAllCookies, getConsentSettings } = require('./util');
 
 const waitForSettings = async () => {
   await page.waitForSelector('#govuk-cookie-page_form');
@@ -18,9 +18,10 @@ describe('Settings form is usable', () => {
   });
 
   it('should show all the settings', async () => {
-    await expect(page).toMatch('Do you want to accept analytics cookies?');
-    await expect(page).toMatch('Do you want to accept marketing cookies?');
-    await expect(page).toMatch('Do you want to accept preference cookies?');
+    const cookieText = await page.evaluate(() => document.querySelector('#govuk-cookie-page_form').innerText);
+    await expect(cookieText).toMatch('Do you want to accept analytics cookies?');
+    await expect(cookieText).toMatch('Do you want to accept marketing cookies?');
+    await expect(cookieText).toMatch('Do you want to accept preference cookies?');
   });
 
   it('should allow all settings to be set', async () => {
@@ -30,7 +31,8 @@ describe('Settings form is usable', () => {
 
     await page.click('#govuk-cookie-page_save');
 
-    await expect(page).toMatch('You’ve set your cookie preferences.');
+    const cookieText = await page.evaluate(() => document.querySelector('.govuk-notification-banner__heading').innerText);
+    await expect(cookieText).toMatch('You’ve set your cookie preferences.');
 
     const consentSettings = await getConsentSettings();
 
@@ -55,10 +57,6 @@ describe('setting and resetting values', () => {
     await page.click('#govuk-cookie-page_save');
 
     await loadPage();
-
-    // For some reason, not waiting causes the incorrect
-    // element to be clicked
-    await page.waitFor(1000);
 
     await page.click('#statistics-cookies-2');
     await page.click('#govuk-cookie-page_save');
