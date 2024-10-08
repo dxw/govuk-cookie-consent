@@ -51,7 +51,7 @@
     "minimist": "^1.2.6",
     "node-gyp": "^9.0.0",
     "node-sass": "7.0.3",
-    "npm-run-all2": "^5.0.0",
+    "npm-run-all2": "^6.0.0",
     "puppeteer": "^1.14.0",
     "regenerator-runtime": "^0.14.0",
     "sass-loader": "^7.1.0",
