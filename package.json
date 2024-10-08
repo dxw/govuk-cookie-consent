@@ -46,7 +46,7 @@
     "husky": "^9.0.0",
     "jest": "^27.4.3",
     "jest-environment-jsdom": "^27.4.3",
-    "jest-puppeteer": "^4.1.0",
+    "jest-puppeteer": "^10.0.0",
     "jsdom": "^16.0.0",
     "minimist": "^1.2.6",
     "node-gyp": "^10.0.0",
