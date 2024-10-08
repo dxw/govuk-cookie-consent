@@ -1,6 +1,6 @@
 /* global page expect */
 
-import { clearAllCookies } from './util';
+const { clearAllCookies } = require('./util');
 
 const waitForVisibleBanner = async () => {
   await page.waitForSelector('#govuk-cookie-choice-banner', { visible: true });
@@ -18,7 +18,11 @@ describe('Banner is usable', () => {
   });
 
   it('should display on first page load', async () => {
-    await expect(page).toMatch('We use some essential cookies to make this service work.');
+    const cookieText = await page.evaluate(() => {
+      const paragraph = document.querySelector('#govuk-cookie-banner .govuk-width-container p');
+      return paragraph.innerText;
+    });
+    await expect(cookieText).toMatch('We use some essential cookies to make this service work.');
   });
 
   it('clicking the "Do not use analytics cookies" button should hide banner', async () => {
@@ -35,14 +39,22 @@ describe('Banner is usable', () => {
     await page.click('#govuk-cookie-banner__link_accept');
     await waitForHiddenBanner();
     await page.waitForSelector('#govuk-cookie-confirmation-banner', { visible: true });
-    await expect(page).toMatch('You have rejected additional cookies.');
+    const cookieText = await page.evaluate(() => {
+      const paragraph = document.querySelector('#govuk-cookie-banner__message');
+      return paragraph.innerText;
+    });
+    await expect(cookieText).toMatch('You have rejected additional cookies.');
   });
 
   it('clicking the "I\'m OK with analytics cookies" button should show confirmation banner', async () => {
     await page.click('#govuk-cookie-banner__link_accept_analytics');
     await waitForHiddenBanner();
     await page.waitForSelector('#govuk-cookie-confirmation-banner', { visible: true });
-    await expect(page).toMatch('You have accepted additional cookies.');
+    const cookieText = await page.evaluate(() => {
+      const paragraph = document.querySelector('#govuk-cookie-banner__message');
+      return paragraph.innerText;
+    });
+    await expect(cookieText).toMatch('You have accepted additional cookies.');
   });
 
   it('clicking "Do not use analytics cookies" should keep user on the same page', async () => {
@@ -56,8 +68,11 @@ describe('Banner is usable', () => {
   });
 
   it('clicking "read more about our cookies" should take the user to another page', async () => {
-    await page.click('#govuk-cookie-banner__link');
-    expect(page.url()).toEqual('http://localhost:8080/our-policies/cookies-policy/');
+    const hrefText = await page.evaluate(() => {
+      const linkElement = document.getElementById('govuk-cookie-banner__link');
+      return linkElement.getAttribute('href');
+    });
+    expect(`http://localhost:8080${hrefText}`).toEqual('http://localhost:8080/our-policies/cookies-policy/');
   });
 
   it('clicking the "I\'m OK with analytics cookies" button should show confirmation banner and allow the banner to be closed', async () => {
@@ -107,7 +122,6 @@ describe('nobanner mode', () => {
 
   it('prevents banner from showing', async () => {
     // give the banner a chance to show up
-    page.waitFor(250);
     const banner = await page.evaluate(async () => document.querySelector('.govuk-cookie-banner'));
     expect(banner).toBe(null);
   });

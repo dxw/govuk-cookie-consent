@@ -51,7 +51,7 @@ export function getNoBanner() {
 // get properties from the scriptTag for serviceName
 export function getServiceName() {
   let serviceName = 'GOV.UK';
-  if (process.env.SERVICE_NAME) {
+  if (typeof process !== 'undefined' && process.env.SERVICE_NAME) {
     serviceName = process.env.SERVICE_NAME;
   }
 
