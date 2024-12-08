@@ -39,7 +39,7 @@
     "babel-loader": "^9.0.0",
     "babel-plugin-rewire": "^1.2.0",
     "css-loader": "^7.0.0",
-    "eslint": "^5.16.0",
+    "eslint": "^9.0.0",
     "eslint-config-nhsuk": "^0.16.0",
     "html-loader": "^0.5.5",
     "http-server": "^14.0.0",
