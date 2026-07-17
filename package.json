@@ -49,7 +49,7 @@
     "jest-puppeteer": "^10.0.1",
     "jsdom": "^25.0.0",
     "minimist": "^1.2.6",
-    "node-gyp": "^10.0.0",
+    "node-gyp": "^13.0.1",
     "npm-run-all2": "^7.0.1",
     "puppeteer": "23.11.1",
     "regenerator-runtime": "^0.14.0",
