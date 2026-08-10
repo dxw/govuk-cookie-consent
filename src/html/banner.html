@@ -5,8 +5,8 @@
         <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on ${require('./../settings.js').getServiceName()}</h2>
 
         <div class="govuk-cookie-banner__content">
-          <p>We use some essential cookies to make this service work.</p>
-          <p>We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+          <p class="govuk-body">We use some essential cookies to make this service work.</p>
+          <p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
         </div>
       </div>
     </div>
@@ -27,7 +27,14 @@
       <div class="govuk-grid-column-two-thirds">
 
         <div class="govuk-cookie-banner__content" id="govuk-success-banner__message">
-          <p class="govuk-body"><span id="govuk-cookie-banner__message"></span> You can <a href="${require('./../settings.js').getPolicyUrl()}">change your cookie settings</a> at any time.</p>
+          <p class="govuk-body">
+            <span id="govuk-cookie-banner__message"></span>
+            You can
+            <a class="govuk-link" href="${require('./../settings.js').getPolicyUrl()}">
+              change your cookie settings
+            </a>
+            at any time.
+          </p>
         </div>
       </div>
     </div>
