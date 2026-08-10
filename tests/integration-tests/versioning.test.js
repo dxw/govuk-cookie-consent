@@ -4,7 +4,7 @@ const { clearAllCookies } = require('./util');
 
 const getCookieNames = async () => {
   const cookies = await page.cookies();
-  return cookies.map(cookie => cookie.name);
+  return cookies.map((cookie) => cookie.name);
 };
 
 /**

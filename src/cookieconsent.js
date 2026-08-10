@@ -147,7 +147,9 @@ export function setConsentSetting(key, value) {
 function enableScriptsAndIframes() {
   const allCategories = ['preferences', 'statistics', 'marketing'];
   // Filter out categories that do not have user consent
-  const allowedCategories = allCategories.filter(category => getConsentSetting(category) === true);
+  const allowedCategories = allCategories.filter(
+    (category) => getConsentSetting(category) === true
+  );
 
   enableScriptsByCategories(allowedCategories);
   enableIframesByCategories(allowedCategories);

@@ -155,4 +155,3 @@ describe('testing getServiceName with environment variables and custom tags', ()
     process.env = OLD_ENV;
   });
 });
-

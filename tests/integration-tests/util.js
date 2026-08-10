@@ -11,7 +11,7 @@ async function clearAllCookies() {
 
 async function getConsentSettings() {
   const allCookies = await page._client().send('Network.getAllCookies'); // eslint-disable-line no-underscore-dangle
-  const rawconsentSettings = allCookies.cookies.find(obj => obj.name === 'govuk-cookie-consent');
+  const rawconsentSettings = allCookies.cookies.find((obj) => obj.name === 'govuk-cookie-consent');
 
   return JSON.parse(decodeURIComponent(rawconsentSettings.value));
 }
